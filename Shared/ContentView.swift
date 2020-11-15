@@ -16,14 +16,14 @@ struct ContentView: View {
                 ForEach(store.sandwiches) { sandwich in
                     SandwichCell(sandwich: sandwich)
                 }
-//                .onMove(perform: moveSandwich)
-//                .onDelete(perform: deleteSandwich)
-                .onMove(perform: { indices, newOffset in
-                    moveSandwich(from: indices, to: newOffset)
-                })
-                .onDelete(perform: { indexSet in
-                    deleteSandwich(offsets: indexSet)
-                })
+                .onMove(perform: moveSandwich)
+//                .onMove(perform: { indices, newOffset in
+//                    moveSandwich(from: indices, to: newOffset)
+//                })
+                .onDelete(perform: deleteSandwich)
+//                .onDelete(perform: { indexSet in
+//                    deleteSandwich(offsets: indexSet)
+//                })
                 HStack {
                     Spacer()
                     Text("\(store.sandwiches.count) Sandwiches")
@@ -33,13 +33,10 @@ struct ContentView: View {
             }
             .navigationTitle("Sandwiches")
             .toolbar {
-                HStack {
-                    Button("Add", action: makeSandwich)
-                        .padding(.trailing)
-                    #if os(iOS)
-                    EditButton()
-                    #endif
-                }
+                #if os(iOS)
+                EditButton()
+                #endif
+                Button("Add", action: makeSandwich)
             }
             Text("Select a sandwich")
                 .font(.largeTitle)
