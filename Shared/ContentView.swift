@@ -37,10 +37,12 @@ struct ContentView: View {
                 ToolbarItem(placement: .primaryAction) {
                     EditButton()
                 }
-                #endif
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button("Add", action: makeSandwich)
                 }
+                #elseif os(macOS)
+                Button("Add", action: makeSandwich)
+                #endif
 //                #if os(iOS)
 //                EditButton()
 //                #endif
