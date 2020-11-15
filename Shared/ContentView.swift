@@ -34,9 +34,17 @@ struct ContentView: View {
             .navigationTitle("Sandwiches")
             .toolbar {
                 #if os(iOS)
-                EditButton()
+                ToolbarItem(placement: .primaryAction) {
+                    EditButton()
+                }
                 #endif
-                Button("Add", action: makeSandwich)
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button("Add", action: makeSandwich)
+                }
+//                #if os(iOS)
+//                EditButton()
+//                #endif
+//                Button("Add", action: makeSandwich)
             }
             Text("Select a sandwich")
                 .font(.largeTitle)
